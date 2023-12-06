@@ -23,8 +23,6 @@ def generate_day(schedule, day):
 
 def generate_schedule(queue,running):
 
-    
-     start_time = time.time()
      while running.value == True:
          
        

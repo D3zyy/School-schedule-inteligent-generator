@@ -11,7 +11,7 @@ class WatchDog:
         start_time = time.time()
         
         while time.time() - start_time < self.time_out:
-            x = 0
+            pass
         run.value = False
     def set_timeout(self,value):
         if  isinstance(value,int) and 0 < value < 600:
