@@ -35,7 +35,7 @@ class Teacher:
     # Func that checks validity of inputs
     def check_validity(self,value):
 
-       if type(value) == str and 3 < len(value) < 15:
+       if type(value) == str and 4 <= len(value) < 13:
             return value
        else:
             raise ValueError(f"It has an inappropriative style.")

@@ -2,6 +2,7 @@ from avaible_classes import classes
 from avaible_teachers import teachers
 from Class import Class
 from Teacher import Teacher
+from Subject import Subject
 
 class Schedule:
     def __init__(self):
@@ -33,43 +34,45 @@ class Schedule:
             return value
         else:
             raise ValueError("Either it is not a teacher object or name has not been set.")
-
+    def check_subject(self,value):
+        if isinstance(value,Subject) and value.get_name is not None:
+            return value
+        else:
+            raise ValueError("Either it is not a subject object or name has not been set.")
     def add_class(self, day, hour, class_id, teacher_name, subject_name):
         # Add a lesson to the schedule
         # Each method check valid inputs
         verified_hour = self.check_hour(hour)
         verified_class_id = self.check_class_id(class_id)
         verified_teacher_name = self.check_teacher_name(teacher_name)
-
+        verified_subject = self.check_subject(subject_name)
 
 
         self.schedule[day].append({
             'hour': verified_hour,
             'class': verified_class_id,
             'teacher': verified_teacher_name,
-            'subject': subject_name
+            'subject': verified_subject
         })
 
     def display_schedule(self):
         # Display the entire schedule
         for day, lessons in self.schedule.items():
             print(f'{day.capitalize()}:')
-            for lesson in lessons:
-                print(f"{lesson['hour']}. hour  Class: {lesson['class'].get_id()}, Teacher: {lesson['teacher'].get_first_name()} { lesson['teacher'].get_last_name()}, Subject: {lesson['subject']}")
-            print()
+            for number in range(1, 11):
+                found = False
+                for lesson in lessons:
+                    if lesson['hour'] == number:
+                        print(f"{lesson['hour']}. hour  Class: {lesson['class'].get_id()}, Teacher: {lesson['teacher'].get_first_name()} {lesson['teacher'].get_last_name()}, Subject: {lesson['subject'].get_name()}")
+                        found = True
+                        break
+                
+                if not found:
+                    print(f"{number}. hour  None")
+                
+                print()
 
-# Example usage:
 
-schedule = Schedule()
-tt = Teacher("Milada", "Horáková")
-c = Class("First floor", 12, "aagg")
 
-# Add some classes to the schedule
-schedule.add_class('monday', 4, c, tt, 'Mathematics')
-schedule.add_class('monday', 6, c, tt, 'Physics')
-schedule.add_class('tuesday', 2, c, tt, 'Chemistry')
-
-# Display the schedule
-schedule.display_schedule()
 
 
