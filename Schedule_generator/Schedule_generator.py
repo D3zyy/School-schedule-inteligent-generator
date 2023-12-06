@@ -18,28 +18,39 @@ def generate_day(schedule, day):
 
         schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
 
-def generate_schedule():
-    s = Schedule()
-    generate_day(s, "monday")
-    generate_day(s, "tuesday")
-    generate_day(s, "wednesday")
-    generate_day(s, "thursday")
-    generate_day(s, "friday")
-    s.display_schedule()
-    
+def generate_schedule(queue):
+    start_time = time.time()
+    while time.time() - start_time < 100:
+         
+        print(f"Proces PID {multiprocessing.current_process().pid}")
+        s = Schedule()
+        generate_day(s, "monday")
+        generate_day(s, "tuesday")
+        generate_day(s, "wednesday")
+        generate_day(s, "thursday")
+        generate_day(s, "friday")
+
+        queue.put(s)
 
 if __name__ == '__main__':
     manager = multiprocessing.Manager()
-    generated_schedules = manager.list()
+    generated_schedules = manager.Queue()
 
     processes = []
 
-    for i in range(5000):
-        process = multiprocessing.Process(target=generate_schedule)
-        processes.append(process)
-        process.start()
+    
+    for i in range(6):
+            process = multiprocessing.Process(target=generate_schedule, args=(generated_schedules,))
+            processes.append(process)
+            process.start()
     for process in processes:
-        process.join()
+            process.join()
+            print(f"Proces s PID {process.pid} skončil.")
+    
+    
+
+    print(generated_schedules.qsize())
+    print(len(processes))
     
         
 
