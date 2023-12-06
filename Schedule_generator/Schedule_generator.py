@@ -23,9 +23,33 @@ def generateMonday(schedule):
                print()
             else:
                 schedule.add_class("monday", random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
-     
+
+def generateTuesday(schedule):
+    # Generate none lesson or normal lesson
+
+
+    
+        
+   
+    for i in range(10):
+        #Generating random number for hour,subject,class,teacher
+        random_hour = random.randint(1, 10)
+        random_subject = random.randint(0, len(subjects)-1)
+        random_class = random.randint(0, len(classes)- 1)
+        random_teacher = random.randint(0, len(teachers) - 1)
+            
+        while any(item.get('hour') == random_hour for item in schedule.schedule['tuesday']):
+                random_hour = random.randint(1, 10)
+                random_number_none = random.randint(0, len(subjects))
+                if random_number_none == len(subjects):
+                    break
+        else:
+                schedule.add_class("tuesday", random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
+
+
 s1 = Schedule()
-generateMonday(s1)
+
+generateTuesday(s1)
 s1.display_schedule()
 
 

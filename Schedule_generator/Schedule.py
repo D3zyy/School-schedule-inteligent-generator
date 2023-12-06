@@ -62,6 +62,7 @@ class Schedule:
             for number in range(1, 11):
                 found = False
                 for lesson in lessons:
+                    
                     if lesson['hour'] == number:
                         print(f"{lesson['hour']}. hour  Class: {lesson['class'].get_id()}, Teacher: {lesson['teacher'].get_first_name()} {lesson['teacher'].get_last_name()}, Subject: {lesson['subject'].get_name()}")
                         found = True
