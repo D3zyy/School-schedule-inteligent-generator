@@ -1,10 +1,11 @@
+import multiprocessing
 from avaible_classes import classes
 from avaible_teachers import teachers
 from Class import Class
 from Teacher import Teacher
 from Subject import Subject
 
-class Schedule:
+class Schedule(multiprocessing.Process):
     def __init__(self):
     # Dictionary to store the schedule for each day of the week
         self.schedule = {
@@ -14,6 +15,8 @@ class Schedule:
             'thursday': [],
             'friday': []
         }
+
+        
    #Check valid inputs 
     def check_hour(self, value):
         if isinstance(value, int) and 0 < value <= 10:
