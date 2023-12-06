@@ -22,9 +22,9 @@ def generate_day(schedule, day):
 
         schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
 
-def generate_schedule(queue):
+def generate_schedule(queue,seconds):
     start_time = time.time()
-    while time.time() - start_time < 10:
+    while time.time() - start_time < seconds:
          
        
         s = Schedule()

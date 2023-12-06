@@ -20,7 +20,7 @@ if __name__ == '__main__':
     
     
     for i in range(1):
-            process = multiprocessing.Process(target=generate_schedule, args=(generated_schedules,))
+            process = multiprocessing.Process(target=generate_schedule, args=(generated_schedules,5))
             processes.append(process)
             process.start()
     for process in processes:
