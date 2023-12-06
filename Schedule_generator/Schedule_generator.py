@@ -19,10 +19,10 @@ def generateMonday(schedule):
             random_teacher = random.randint(0, len(teachers) - 1)
             print(f"Random hour number: {random_hour}")
             
-            if any(item.get('hour') == random_hour for item in schedule.schedule['Monday']):
+            if any(item.get('hour') == random_hour for item in schedule.schedule['monday']):
                print()
             else:
-                schedule.add_class("Monday", random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
+                schedule.add_class("monday", random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
      
 s1 = Schedule()
 generateMonday(s1)
