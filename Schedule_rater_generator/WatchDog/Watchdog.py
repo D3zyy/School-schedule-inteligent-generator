@@ -7,11 +7,12 @@ class WatchDog:
             self.time_out = timeout
         else:
             raise ValueError("Wrong input")
-    def activete_Timer(self):
+    def activate_Timer(self,run):
         start_time = time.time()
-        while time.time() - start_time < 3:
-            print()
-        return False
+        
+        while time.time() - start_time < self.time_out:
+            x = 0
+        run.value = False
     def set_timeout(self,value):
         if  isinstance(value,int) and 0 < value < 600:
             self.time_out = value

@@ -1,14 +1,13 @@
 
-from .avaible_teachers import teachers
-from .avaible_subjects import subjects
-from .avaible_classes import classes
-from .Schedule import Schedule
+from Schedule.avaible_teachers import teachers
+from Schedule.avaible_subjects import subjects
+from Schedule.avaible_classes import classes
+from Schedule.Schedule import Schedule
 import random
 import multiprocessing 
 from multiprocessing import Lock
 import time
-from WatchDog.Watchdog import WatchDog
-
+from WatchDog_checker import still_running
 
 def generate_day(schedule, day):
     for i in range(10):
@@ -22,9 +21,11 @@ def generate_day(schedule, day):
 
         schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
 
-def generate_schedule(queue,seconds):
-    start_time = time.time()
-    while time.time() - start_time < seconds:
+def generate_schedule(queue,running):
+
+    
+     start_time = time.time()
+     while running.value == True:
          
        
         s = Schedule()
