@@ -1,9 +1,9 @@
 import multiprocessing
-from avaible_classes import classes
-from avaible_teachers import teachers
-from Class import Class
-from Teacher import Teacher
-from Subject import Subject
+from .avaible_classes import classes
+from .avaible_teachers import teachers
+from .Class import Class
+from .Teacher import Teacher
+from .Subject import Subject
 
 class Schedule(multiprocessing.Process):
     def __init__(self):

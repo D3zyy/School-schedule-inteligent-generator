@@ -1,4 +1,4 @@
-from Subject import Subject
+from .Subject import Subject
 
 
 #You can add as many subjects as you wish to generate from.
