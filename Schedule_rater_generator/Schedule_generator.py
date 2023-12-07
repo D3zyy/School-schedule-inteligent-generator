@@ -7,8 +7,7 @@ from Schedule.avaible_subjects import subjects
 from Schedule.Schedule import Schedule
 import multiprocessing 
 from multiprocessing import Lock
-from WatchDog.Watchdog import WatchDog
-from shared_primitivum import get_still_running
+from shared_primitivum import get_still_running, WatchDog
 
 
 if __name__ == '__main__':
