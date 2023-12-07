@@ -7,18 +7,18 @@ from Schedule.avaible_subjects import subjects
 from Schedule.Schedule import Schedule
 import multiprocessing 
 from multiprocessing import Lock
-from shared_primitivum import get_still_running, WatchDog
-
+from shared_primitivum import get_still_running, WatchDog,wd
+from Schedule_rater.rater import Rater
 
 if __name__ == '__main__':
       try:
             #Amount of second to run the whole programm
-            seconds = 1
-            wd = WatchDog(seconds)
+            
+            
             manager = multiprocessing.Manager()
             #Queue to store all the generated schedules
             generated_schedules = manager.Queue()
-            
+
             #A variable that checks whether program is still running
             running = get_still_running()
             #Array to store all the processes
@@ -30,12 +30,13 @@ if __name__ == '__main__':
             
             while running.value == True:
                   
-                  #Starting x procceses to generate schedule
-                  for i in range(1):
+                  #Starting x procceses to generate and rate the schedule 
+                  for i in range(4):
+                        
                         process = multiprocessing.Process(target=generate_schedule, args=(generated_schedules,running))
                         processes.append(process)
                         process.start()
-                  #Waiting for processes to finish
+                  #Waiting for all processes to finish
                   for process in processes:
                               process.join()
                               print(f"Proces s PID {process.pid} skončil.")
@@ -44,6 +45,7 @@ if __name__ == '__main__':
             print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()}")
             print(f"Počet (nejspíše) zatížených jader : {len(processes)}")
             time.sleep(5)
+            
             for i in  range(generated_schedules.qsize()):
         
                   item = generated_schedules.get().display_schedule() 

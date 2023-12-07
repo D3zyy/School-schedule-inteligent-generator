@@ -7,8 +7,7 @@ import random
 import multiprocessing 
 from multiprocessing import Lock
 import time
-from shared_primitivum import still_running
-
+from shared_primitivum import get_still_running
 def generate_day(schedule, day):
     
     for i in range(10):
