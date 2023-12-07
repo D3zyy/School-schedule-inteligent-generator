@@ -17,7 +17,7 @@ def generate_day(schedule, day):
             random_class = random.randint(0, len(classes) - 1)
             random_teacher = random.randint(0, len(teachers) - 1)
             
-            random_subject = random.randint(0, len(teachers[2].subjects) - 1)
+            random_subject = random.randint(0, len(teachers[random_teacher].subjects) - 1)
             if random_number != len(subjects):
                 while any(item.get('hour') == random_hour for item in schedule.schedule[day]):
                     random_hour = random.randint(1, 10)
