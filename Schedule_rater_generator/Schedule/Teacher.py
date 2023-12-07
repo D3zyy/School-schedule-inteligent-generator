@@ -1,7 +1,10 @@
 
+from .Subject import Subject
 class Teacher:
-    def __init__(self, first_name, last_name):
+    def __init__(self, first_name, last_name,subjects ):
             try:
+                
+                self.subjects = subjects
                 self.first_name = self.check_validity(first_name)
                 self.last_name = self.check_validity(last_name)
             except ValueError as e:
@@ -15,7 +18,8 @@ class Teacher:
     def get_first_name(self):
             return self.first_name
         
-        
+    def get_subjects(self):
+         return self.subjects   
 
     # first_name setter
     def set_first_name(self, value):

@@ -14,14 +14,15 @@ def generate_day(schedule, day):
     for i in range(10):
             random_number = random.randint(1,len(subjects))
             random_hour = random.randint(1, 10)
-            random_subject = random.randint(0, len(subjects) - 1)
             random_class = random.randint(0, len(classes) - 1)
             random_teacher = random.randint(0, len(teachers) - 1)
+            
+            random_subject = random.randint(0, len(teachers[2].subjects) - 1)
             if random_number != len(subjects):
                 while any(item.get('hour') == random_hour for item in schedule.schedule[day]):
                     random_hour = random.randint(1, 10)
                 
-                schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
+                schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], teachers[2].subjects[random_subject])
             else:
                  continue
 def generate_schedule(queue,running):
