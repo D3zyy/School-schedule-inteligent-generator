@@ -8,10 +8,10 @@ from .Subject import Subject
 try:
 
     teachers = [
-    Teacher("Aleš","Novotný",[ Subject("Matematika"), Subject("Tělesná výchova"),]),
-    Teacher("Barbora","Novotná",[ Subject("Anglický Jazyk"), Subject("Tělesná výchova"),]),
-    Teacher("Brumbál","Ohnivý",[ Subject("Matematika"), Subject("Tělesná výchova"),]),
-    Teacher("Libor","Lisoň",[ Subject("Matematika"), Subject("Tělesná výchova"),]),
+    Teacher("Ondřej","Mandík",[ Subject("Programové vybavení")]),
+    Teacher("Tomáš","Juchelka",[ Subject("Anglický Jazyk")]),
+    Teacher("Pavel","Lopocha",[ Subject("Tělesná výchova")]),
+    Teacher("Lucie","Brčáková",[ Subject("Podnikové informační systémy"), Subject("Ekonomika"),Subject("Zaklady přirodních věd")]),
     Teacher("Bedřich","Mohutný",[ Subject("Matematika"), Subject("Tělesná výchova"),]),
     Teacher("Alžběta","Malá",[ Subject("Matematika"), Subject("Tělesná výchova"),]),
     Teacher("Klára","Krátká",[ Subject("Matematika"), Subject("Tělesná výchova"),]),

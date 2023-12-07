@@ -22,7 +22,7 @@ def generate_day(schedule, day):
                 while any(item.get('hour') == random_hour for item in schedule.schedule[day]):
                     random_hour = random.randint(1, 10)
                 
-                schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], teachers[2].subjects[random_subject])
+                schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], teachers[random_teacher].subjects[random_subject])
             else:
                  continue
 def generate_schedule(queue,running):

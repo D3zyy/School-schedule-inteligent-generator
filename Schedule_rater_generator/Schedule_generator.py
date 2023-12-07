@@ -13,7 +13,7 @@ from shared_primitivum import get_still_running, WatchDog
 if __name__ == '__main__':
       try:
             #Amount of second to run the whole programm
-            seconds = 60
+            seconds = 1
             wd = WatchDog(seconds)
             manager = multiprocessing.Manager()
             #Queue to store all the generated schedules
