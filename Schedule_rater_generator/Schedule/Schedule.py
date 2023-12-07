@@ -15,7 +15,21 @@ class Schedule(multiprocessing.Process):
             'thursday': [],
             'friday': []
         }
+    def get_monday_items(self):
+        monday_schedule = self.schedule.get('monday', [])
+        formatted_items = []
 
+        for item in monday_schedule:
+            formatted_item = {
+                'hour': item.get('hour'),
+                'class': item.get('class').get_id(),
+                'teacher': item.get('teacher').get_last_name(),
+                'subject': item.get('subject').get_name()
+            }
+            formatted_items.append(formatted_item)
+
+        for item in formatted_items:
+            print(f"Hour: {item['hour']}, Class: {item['class']}, Teacher: {item['teacher']}, Subject: {item['subject']}")
         
    #Check valid inputs 
     def check_hour(self, value):
@@ -62,7 +76,7 @@ class Schedule(multiprocessing.Process):
         # Display the entire schedule
         for day, lessons in self.schedule.items():
             print(f'{day.capitalize()}:')
-            for number in range(1, 11):
+            for number in range(1,11):
                 found = False
                 for lesson in lessons:
                     
@@ -74,7 +88,7 @@ class Schedule(multiprocessing.Process):
                 if not found:
                     print(f"{number}. hour  None")
                 
-                print()
+                
 
 
 

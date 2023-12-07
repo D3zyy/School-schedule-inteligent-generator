@@ -7,20 +7,23 @@ import random
 import multiprocessing 
 from multiprocessing import Lock
 import time
-from WatchDog_checker import still_running
+from shared_primitivum import still_running
 
 def generate_day(schedule, day):
+    
     for i in range(10):
-        random_hour = random.randint(1, 10)
-        random_subject = random.randint(0, len(subjects) - 1)
-        random_class = random.randint(0, len(classes) - 1)
-        random_teacher = random.randint(0, len(teachers) - 1)
-
-        while any(item.get('hour') == random_hour for item in schedule.schedule[day]):
+            random_number = random.randint(1,len(subjects))
             random_hour = random.randint(1, 10)
-
-        schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
-
+            random_subject = random.randint(0, len(subjects) - 1)
+            random_class = random.randint(0, len(classes) - 1)
+            random_teacher = random.randint(0, len(teachers) - 1)
+            if random_number != len(subjects):
+                while any(item.get('hour') == random_hour for item in schedule.schedule[day]):
+                    random_hour = random.randint(1, 10)
+                
+                schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], subjects[random_subject])
+            else:
+                 continue
 def generate_schedule(queue,running):
 
      while running.value == True:
@@ -32,5 +35,6 @@ def generate_schedule(queue,running):
         generate_day(s, "wednesday")
         generate_day(s, "thursday")
         generate_day(s, "friday")
-
+        
         queue.put(s)
+        
