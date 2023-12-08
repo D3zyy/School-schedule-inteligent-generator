@@ -64,7 +64,7 @@ class Rater:
                                     match lesson['hour']:
                                         #1. hodina
                                         case 1:
-                                            specific_schedule.set_rating(specific_schedule.get_rating() - 3)
+                                            specific_schedule.set_rating(specific_schedule.get_rating() - 5)
                                         #2. hodina
                                         case 2:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  + 1)
@@ -199,7 +199,7 @@ class Rater:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  - 25)
                             
                            
-                            rated_array.append(specific_schedule)
+                    rated_array.append(specific_schedule)
                            
                     
                                 

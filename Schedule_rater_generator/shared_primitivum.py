@@ -2,7 +2,7 @@ import multiprocessing
 from WatchDog.Watchdog import WatchDog
 
 #An object that sets the amount of time  of the program
-wd = WatchDog(10)
+wd = WatchDog(1)
 
 
 

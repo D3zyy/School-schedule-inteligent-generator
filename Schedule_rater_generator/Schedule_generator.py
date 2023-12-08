@@ -56,17 +56,25 @@ if __name__ == '__main__':
                               process.join()
                               print(f"Proces s PID {process.pid} skončil.")
             
-            best_score = -999
-            best_schedule = 1
+            best_score = float('-inf')
+            best_schedule = None
+
             for schedule in score_of_rated_schedules:
-                  if schedule.get_rating() > best_score and schedule is not None:
-                   best_score = schedule.get_rating()
-                   best_schedule = schedule
+                  
+                  if schedule.get_rating() > best_score:
+                        best_score = schedule.get_rating()
+                        
+                        best_schedule = schedule
+
+            # Now, best_schedule contains the schedule with the highest rating
+            # and best_score contains the corresponding rating.
+
             print(f"Nejlepší score :{best_score}")
             print(best_schedule.display_schedule())
             print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()+len(score_of_rated_schedules)}")
             print(f"Počet ohodnocenených rozvrhů  : {len(score_of_rated_schedules)}")
             print(f"Počet  spuštěných procesů : {len(processes)}")
+            
           
             
             
