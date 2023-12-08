@@ -40,13 +40,14 @@ if __name__ == '__main__':
 
                               processes.append(process)
                               process.start()
-                  
-                  for x in range(number_of_processes): 
-                              
-                              process_rating = multiprocessing.Process(target=rat.rate_Positionss, args=(generated_schedules,running,score_of_rated_schedules,lock))
+                              time.sleep(0.005)
+                              process_rating = multiprocessing.Process(target=rat.rate_Positions, args=(generated_schedules,running,score_of_rated_schedules,lock))
                               processes.append(process_rating)
                               
                               process_rating.start()
+      
+                              
+                              
                         
                         
 
@@ -56,9 +57,11 @@ if __name__ == '__main__':
                               print(f"Proces s PID {process.pid} skončil.")
             
 
-            print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()}")
+            print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()+len(score_of_rated_schedules)}")
+            print(f"Počet ohodnocenených rozvrhů  : {len(score_of_rated_schedules)}")
             print(f"Počet  spuštěných procesů : {len(processes)}")
-            print(f"")
+            # Předpokládejme, že score_of_rated_schedules je pole objektů se 'Schedule' a metodou 'get_rating()'
+            
             
             
             
