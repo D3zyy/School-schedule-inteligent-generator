@@ -15,8 +15,13 @@ class Schedule(multiprocessing.Process):
             'thursday': [],
             'friday': []
         }
-    def get_monday_items(self):
-        monday_schedule = self.schedule.get('monday', [])
+        self.rating = 0
+    def set_rating(self,value):
+        self.rating = value
+    def get_rating(self):
+        return self.rating
+    def get_day_items(self,day : str):
+        monday_schedule = self.schedule.get(day, [])
         formatted_items = []
 
         for item in monday_schedule:
@@ -28,8 +33,7 @@ class Schedule(multiprocessing.Process):
             }
             formatted_items.append(formatted_item)
 
-        for item in formatted_items:
-            print(f"Hour: {item['hour']}, Class: {item['class']}, Teacher: {item['teacher']}, Subject: {item['subject']}")
+        return formatted_items
         
    #Check valid inputs 
     def check_hour(self, value):

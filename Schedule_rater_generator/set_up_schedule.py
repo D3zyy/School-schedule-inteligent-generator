@@ -24,17 +24,19 @@ def generate_day(schedule, day):
                 schedule.add_class(day, random_hour, classes[random_class], teachers[random_teacher], teachers[random_teacher].subjects[random_subject])
             else:
                  continue
-def generate_schedule(queue,running):
+def generate_schedule(queue,running,l):
 
      while running.value == True:
-         
-       
-        s = Schedule()
-        generate_day(s, "monday")
-        generate_day(s, "tuesday")
-        generate_day(s, "wednesday")
-        generate_day(s, "thursday")
-        generate_day(s, "friday")
-        
-        queue.put(s)
+        l.acquire()
+        try:
+            s = Schedule()
+            generate_day(s, "monday")
+            generate_day(s, "tuesday")
+            generate_day(s, "wednesday")
+            generate_day(s, "thursday")
+            generate_day(s, "friday")
+            
+            queue.put(s)
+        finally:
+             l.release()
         

@@ -18,5 +18,7 @@ class WatchDog:
             self.time_out = value
         else:
             raise ValueError("Wrong input")
+    def get_time(self):
+        return self.time_out
 
     

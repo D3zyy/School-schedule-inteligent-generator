@@ -18,24 +18,38 @@ if __name__ == '__main__':
             manager = multiprocessing.Manager()
             #Queue to store all the generated schedules
             generated_schedules = manager.Queue()
-
+            lock = manager.Lock()
+            score_of_rated_schedules = manager.list()
+            rat = Rater()
+            lock = Lock()
+         
             #A variable that checks whether program is still running
             running = get_still_running()
             #Array to store all the processes
             processes = []
             #Process to active timer of the program
             wd_process = multiprocessing.Process(target=wd.activate_Timer, args=(running,))
-            wd_process.start()
             processes.append(wd_process)
-            
+            wd_process.start()
             while running.value == True:
-                  
+                  number_of_processes = 3
                   #Starting x procceses to generate and rate the schedule 
-                  for i in range(4):
+                  
+                  for y in range(number_of_processes):
+                              process = multiprocessing.Process(target=generate_schedule, args=(generated_schedules,running,lock))
+
+                              processes.append(process)
+                              process.start()
+                  
+                  for x in range(number_of_processes): 
+                              
+                              process_rating = multiprocessing.Process(target=rat.rate_Positionss, args=(generated_schedules,running,score_of_rated_schedules,lock))
+                              processes.append(process_rating)
+                              
+                              process_rating.start()
                         
-                        process = multiprocessing.Process(target=generate_schedule, args=(generated_schedules,running))
-                        processes.append(process)
-                        process.start()
+                        
+
                   #Waiting for all processes to finish
                   for process in processes:
                               process.join()
@@ -43,15 +57,11 @@ if __name__ == '__main__':
             
 
             print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()}")
-            print(f"Počet (nejspíše) zatížených jader : {len(processes)}")
-            time.sleep(5)
+            print(f"Počet  spuštěných procesů : {len(processes)}")
+            print(f"")
             
-            for i in  range(generated_schedules.qsize()):
-        
-                  item = generated_schedules.get().display_schedule() 
-                  if item is not None:
-                        print(item)
-                  
+            
+            
                       
                   
 
