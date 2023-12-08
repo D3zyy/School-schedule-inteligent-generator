@@ -29,7 +29,7 @@ class Rater:
                                         
                                         #1. hodina
                                         case 1:
-                                            specific_schedule.set_rating(specific_schedule.get_rating() - 6.5)
+                                            specific_schedule.set_rating(specific_schedule.get_rating() - 8)
                                         #2. hodina
                                         case 2:
                                             specific_schedule.set_rating(specific_schedule.get_rating() + 1)
@@ -64,7 +64,7 @@ class Rater:
                                     match lesson['hour']:
                                         #1. hodina
                                         case 1:
-                                            specific_schedule.set_rating(specific_schedule.get_rating() - 6.5)
+                                            specific_schedule.set_rating(specific_schedule.get_rating() - 3)
                                         #2. hodina
                                         case 2:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  + 1)
@@ -198,10 +198,10 @@ class Rater:
                                         case 10:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  - 25)
                             
-                            print(f"Ohodnoceno na konci : {specific_schedule.get_rating()}") 
-                            rated_array.append(specific_schedule)
-                            print(len(rated_array))
                            
+                            rated_array.append(specific_schedule)
+                           
+                    
                                 
 
                             
