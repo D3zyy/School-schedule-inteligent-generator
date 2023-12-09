@@ -32,6 +32,7 @@ class Schedule(multiprocessing.Process):
                 'subject': item.get('subject').get_name()
             }
             formatted_items.append(formatted_item)
+        print(formatted_items)    
 
         return formatted_items
         

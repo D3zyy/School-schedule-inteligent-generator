@@ -32,7 +32,7 @@ if __name__ == '__main__':
             processes.append(wd_process)
             wd_process.start()
             while running.value == True:
-                  number_of_processes = 3
+                  number_of_processes = 2
                   #Starting x procceses to generate and rate the schedule 
                   
                   for y in range(number_of_processes):
@@ -40,11 +40,13 @@ if __name__ == '__main__':
 
                               processes.append(process)
                               process.start()
-                              time.sleep(0.005)
-                              process_rating = multiprocessing.Process(target=rat.rate_Positions, args=(generated_schedules,running,score_of_rated_schedules,lock))
-                              processes.append(process_rating)
-                              
-                              process_rating.start()
+                        
+                              if wd_process.is_alive():
+                                      
+                                    process_rating = multiprocessing.Process(target=rat.rate_Positions, args=(generated_schedules,running,score_of_rated_schedules,lock))
+                                    processes.append(process_rating)
+                                    
+                                    process_rating.start()
       
                               
                               
