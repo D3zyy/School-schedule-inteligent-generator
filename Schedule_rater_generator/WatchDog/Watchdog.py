@@ -3,7 +3,7 @@ import time
 
 class WatchDog:
     def __init__(self,timeout):
-        if  isinstance(timeout,int) and 0 < timeout <= 1000:
+        if  isinstance(timeout,int) and 0 < timeout <= 6000:
             self.time_out = timeout
         else:
             raise ValueError("Wrong input (must be an intiger between 0 - 1000 second)")
@@ -14,7 +14,7 @@ class WatchDog:
             pass
         run.value = False
     def set_timeout(self,value):
-        if  isinstance(value,int) and 0 < value <= 1000:
+        if  isinstance(value,int) and 0 < value <= 6000:
             self.time_out = value
         else:
             raise ValueError("Wrong input (must be an intiger between 0 - 1000 second)")

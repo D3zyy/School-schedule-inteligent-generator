@@ -15,22 +15,22 @@ if __name__ == '__main__':
             while True:
                   try:
                          
-                        time_to_run = int(input("Na jakou dobu chcete spustit generování a hodnocení: (1-1000 sekund) "))
-                        if  1 <= time_to_run <= 1000:
+                        time_to_run = int(input("Na jakou dobu chcete spustit generování a hodnocení: (1-6000 sekund) "))
+                        if  1 <= time_to_run <= 6000:
                               wd.set_timeout(time_to_run)
                               break
                         else:
-                              print("Zadávejte číslo v rozmezí 1-1000.")
+                              print("Zadávejte číslo v rozmezí 1-6000.")
                   except:
                          print("Špatný input")
             while True:
                   try:
                          
-                        number_of_processes = int(input("Kolik procesů chcete spustit: (3 - 8 procesů) "))
-                        if 3 <= number_of_processes <= 8:
+                        number_of_processes = int(input("Kolik procesů chcete spustit: (3 - 50 procesů) "))
+                        if 3 <= number_of_processes <= 50:
                               break
                         else:
-                              print("Zadávejte číslo v rozmezí 3-8.")
+                              print("Zadávejte číslo v rozmezí 3-50.")
                   except:
                          print("Špatný input")
                   
