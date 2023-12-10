@@ -7,12 +7,36 @@ from Schedule.avaible_subjects import subjects
 from Schedule.Schedule import Schedule
 import multiprocessing 
 from multiprocessing import Lock
-from shared_primitivum import get_still_running, WatchDog,wd
+from shared_primitivum import get_still_running, WatchDog,wd,number_of_rated_schedules,best_scored_schedule
 from Schedule_rater.rater import Rater
 
 if __name__ == '__main__':
       try:
-            #Amount of second to run the whole programm
+            while True:
+                  try:
+                         
+                        time_to_run = int(input("Na jakou dobu chcete spustit generování a hodnocení: (1-1000 sekund) "))
+                        if  1 <= time_to_run <= 1000:
+                              wd.set_timeout(time_to_run)
+                              break
+                        else:
+                              print("Zadávejte číslo v rozmezí 1-1000.")
+                  except:
+                         print("Špatný input")
+            while True:
+                  try:
+                         
+                        number_of_processes = int(input("Kolik procesů chcete spustit: (3 - 8 procesů) "))
+                        if 3 <= number_of_processes <= 8:
+                              break
+                        else:
+                              print("Zadávejte číslo v rozmezí 3-8.")
+                  except:
+                         print("Špatný input")
+                  
+
+
+            
             
             
             manager = multiprocessing.Manager()
@@ -32,7 +56,7 @@ if __name__ == '__main__':
             processes.append(wd_process)
             wd_process.start()
             while running.value == True:
-                  number_of_processes = 2
+                  
                   #Starting x procceses to generate and rate the schedule 
                   
                   for y in range(number_of_processes):
@@ -40,10 +64,10 @@ if __name__ == '__main__':
 
                               processes.append(process)
                               process.start()
-                        
+                              time.sleep(0.01)
                               if wd_process.is_alive():
                                       
-                                    process_rating = multiprocessing.Process(target=rat.rate_Positions, args=(generated_schedules,running,score_of_rated_schedules,lock))
+                                    process_rating = multiprocessing.Process(target=rat.rate_Positions, args=(generated_schedules,running,score_of_rated_schedules,lock,number_of_rated_schedules,best_scored_schedule))
                                     processes.append(process_rating)
                                     
                                     process_rating.start()
@@ -63,18 +87,20 @@ if __name__ == '__main__':
 
             for schedule in score_of_rated_schedules:
                   
-                  if schedule.get_rating() > best_score:
-                        best_score = schedule.get_rating()
-                        
-                        best_schedule = schedule
+                  if schedule is not None:
+                        if schedule.get_rating() > best_score:
+                              best_score = schedule.get_rating()
+                              
+                              best_schedule = schedule
 
             # Now, best_schedule contains the schedule with the highest rating
             # and best_score contains the corresponding rating.
-
-            print(f"Nejlepší score :{best_score}")
+            
+            
             print(best_schedule.display_schedule())
-            print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()+len(score_of_rated_schedules)}")
-            print(f"Počet ohodnocenených rozvrhů  : {len(score_of_rated_schedules)}")
+            print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()+number_of_rated_schedules.value}")
+            print(f"Počet ohodnocenených rozvrhů  : {number_of_rated_schedules.value}")
+            print(f"Nejlepší score :{best_scored_schedule.value }")
             print(f"Počet  spuštěných procesů : {len(processes)}")
             
           
@@ -89,6 +115,8 @@ if __name__ == '__main__':
              print(e)
       except Exception as e:
              print(e)
+      except:
+             print("Error -.-")
 
 
     

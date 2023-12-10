@@ -29,10 +29,11 @@ class Schedule(multiprocessing.Process):
                 'hour': item.get('hour'),
                 'class': item.get('class').get_id(),
                 'teacher': item.get('teacher').get_last_name(),
-                'subject': item.get('subject').get_name()
+                'subject': item.get('subject').get_name(),
+                'location' : item.get('class').get_location()
             }
             formatted_items.append(formatted_item)
-        print(formatted_items)    
+            
 
         return formatted_items
         
@@ -91,7 +92,7 @@ class Schedule(multiprocessing.Process):
                         break
                 
                 if not found:
-                    print(f"{number}. hour  None")
+                    print(f"{number}. hour  Volno")
                 
                 
 
