@@ -44,12 +44,11 @@ class Rater:
                                 
               
 
-
                                 #5. rule max lessons 
                                 if len(specific_schedule_day) == 10:
-                                    specific_schedule.set_rating(specific_schedule.get_rating() - 1000)
+                                    specific_schedule.set_rating(specific_schedule.get_rating() - 10000)
                                 elif len(specific_schedule_day)  == 9: 
-                                    specific_schedule.set_rating(specific_schedule.get_rating() - 300)
+                                    specific_schedule.set_rating(specific_schedule.get_rating() - 3000)
                                 elif len(specific_schedule_day)  == 8:
                                     specific_schedule.set_rating(specific_schedule.get_rating() - 200)
                                 elif len(specific_schedule_day)  < 6:
@@ -294,15 +293,15 @@ class Rater:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  - 50)
                                         #9. hodina    
                                         case 9:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 2000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 4000)
                                         #10. hodina
                                         case 10:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 3000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 8000)
                             
 
                             # Give points for empty hours
                             if count_hour_5_to_8 == 1:
-                                    specific_schedule.set_rating(specific_schedule.get_rating() + 600)
+                                    specific_schedule.set_rating(specific_schedule.get_rating() + 6000)
                             elif count_hour_5_to_8 == 2:
                                    specific_schedule.set_rating(specific_schedule.get_rating() - 5)
                             elif count_hour_5_to_8 == 3:

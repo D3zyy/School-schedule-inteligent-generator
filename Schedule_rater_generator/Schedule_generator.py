@@ -26,8 +26,8 @@ if __name__ == '__main__':
             while True:
                   try:
                          
-                        number_of_processes = int(input("Kolik procesů chcete spustit: (3 - 50 procesů) "))
-                        if 3 <= number_of_processes <= 50:
+                        number_of_processes = int(input("Kolik procesů chcete spustit: (1 - 50 procesů) "))
+                        if 1 <= number_of_processes <= 50:
                               break
                         else:
                               print("Zadávejte číslo v rozmezí 3-50.")
@@ -101,7 +101,7 @@ if __name__ == '__main__':
             print(f"Počet vygenerovaných rozvrhů : {generated_schedules.qsize()+number_of_rated_schedules.value}")
             print(f"Počet ohodnocenených rozvrhů  : {number_of_rated_schedules.value}")
             print(f"Nejlepší score :{best_scored_schedule.value }")
-            print(f"Počet  spuštěných procesů : {len(processes)}")
+            
             
           
             
