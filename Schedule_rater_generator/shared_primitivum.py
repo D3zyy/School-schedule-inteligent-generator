@@ -10,6 +10,7 @@ wd = WatchDog(1)
 still_running = multiprocessing.Value('b',True)
 number_of_rated_schedules = multiprocessing.Value('i',0)
 best_scored_schedule = multiprocessing.Value('i',-90000)
+better_than_act_schedule = multiprocessing.Value('i',0)
 def get_still_running():
             return still_running
 

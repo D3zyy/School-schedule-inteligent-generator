@@ -3,7 +3,7 @@ class Rater:
         self.rating = 0
     def get_rating(self):
         return self.rating
-    def rate_Positions(self,queue,running,rated_array,l,number_of_rated_schedules,best_scored_schedule):   
+    def rate_Positions(self,queue,running,rated_array,l,number_of_rated_schedules,best_scored_schedule,better_than_act_schedule):   
 
     
 
@@ -38,7 +38,7 @@ class Rater:
                                     specific_schedule.set_rating(specific_schedule.get_rating() + 20)
 
 
-                                #7. rule math cannot be first lesson nor after lunch break
+                                #7. rule math cannot be first lesson nor after lunch break and not Profilové předměty
                                 if lesson["subject"] == "Matematika" and lesson["hour"] == 1 or lesson["subject"] == "Databázové systémy" and lesson["hour"] == 1 or lesson["subject"] == "Programmové vybavení" and lesson["hour"] == 1 or lesson["subject"] == "Počítačové systémy a sítě" and lesson["hour"] == 1 or lesson["subject"] == "Webové aplikace" and lesson["hour"] == 1 :
                                     specific_schedule.set_rating(specific_schedule.get_rating() - 50)
                                 
@@ -51,8 +51,10 @@ class Rater:
                                     specific_schedule.set_rating(specific_schedule.get_rating() - 3000)
                                 elif len(specific_schedule_day)  == 8:
                                     specific_schedule.set_rating(specific_schedule.get_rating() - 200)
-                                elif len(specific_schedule_day)  < 6:
-                                    specific_schedule.set_rating(specific_schedule.get_rating() - 300) 
+                                elif len(specific_schedule_day)  == 7:
+                                    specific_schedule.set_rating(specific_schedule.get_rating() - 100)
+                                elif len(specific_schedule_day)  < 4:
+                                    specific_schedule.set_rating(specific_schedule.get_rating() - 900) 
                                 elif  4 <len(specific_schedule_day)  <= 6:
                                     specific_schedule.set_rating(specific_schedule.get_rating() + 500)     
                                 #4. rule checking if one of 5-8 hour is  empty for a lunch (grading at the end of whole week)
@@ -153,10 +155,10 @@ class Rater:
                                             specific_schedule.set_rating(specific_schedule.get_rating() - 50)
                                         #9. hodina    
                                         case 9:
-                                            specific_schedule.set_rating(specific_schedule.get_rating() - 2000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating() - 10000)
                                         #10. hodina
                                         case 10:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 3000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                 #Tuesdays rating
                                 elif day == "tuesday":
                                     #Checking whether the hour is occupied or not
@@ -188,10 +190,10 @@ class Rater:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  - 50)
                                         #9. hodina    
                                         case 9:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 2000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                         #10. hodina
                                         case 10:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 3000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                 #Tuesdays rating
                                 elif day == "wednesday":
                                     #Checking whether the hour is occupied or not
@@ -223,10 +225,10 @@ class Rater:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  - 50)
                                         #9. hodina    
                                         case 9:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 2000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                         #10. hodina
                                         case 10:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 3000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                 #Tuesdays rating
                                 elif day == "thursday":
                                     #Checking whether the hour is occupied or not
@@ -258,10 +260,10 @@ class Rater:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  - 50)
                                         #9. hodina    
                                         case 9:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 2000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                         #10. hodina
                                         case 10:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 3000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                 #Tuesdays rating
                                 elif day == "friday":
                                     #Checking whether the hour is occupied or not
@@ -293,17 +295,17 @@ class Rater:
                                             specific_schedule.set_rating(specific_schedule.get_rating()  - 50)
                                         #9. hodina    
                                         case 9:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 4000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                                         #10. hodina
                                         case 10:
-                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 8000)
+                                            specific_schedule.set_rating(specific_schedule.get_rating()  - 10000)
                             
 
                             # Give points for empty hours
                             if count_hour_5_to_8 == 1:
-                                    specific_schedule.set_rating(specific_schedule.get_rating() + 6000)
+                                    specific_schedule.set_rating(specific_schedule.get_rating() + 10000)
                             elif count_hour_5_to_8 == 2:
-                                   specific_schedule.set_rating(specific_schedule.get_rating() - 5)
+                                   specific_schedule.set_rating(specific_schedule.get_rating() - 500)
                             elif count_hour_5_to_8 == 3:
                                     specific_schedule.set_rating(specific_schedule.get_rating() - 10)
                             elif count_hour_5_to_8 == 4:
@@ -317,6 +319,8 @@ class Rater:
                         specific_schedule.set_rating(specific_schedule.get_rating())
                         rated_array.append(specific_schedule)
                         best_scored_schedule.value = specific_schedule.get_rating() 
+                    if  specific_schedule.get_rating() > -2403:
+                        better_than_act_schedule.value += 1
                     del specific_schedule
                     number_of_rated_schedules.value += 1
                     print(f"Rozvrhů ohodnoceno : {number_of_rated_schedules.value}")
@@ -329,7 +333,3 @@ class Rater:
 
             finally:
                 l.release()
-
-
-
-    
