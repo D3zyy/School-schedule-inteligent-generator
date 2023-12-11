@@ -31,11 +31,18 @@ if __name__ == '__main__':
                   while True:
                         try:
                               
-                              number_of_processes = int(input("Kolik procesů chcete spustit: (1 - 50 procesů) "))
-                              if 1 <= number_of_processes <= 50:
+                              number_of_processes = str(input("Jak moc chcete zatížit procesor [A = slabě] [B = středně] [C = silně] "))
+                              if number_of_processes == "A":
+                                    number_of_processes = 1
                                     break
+                              elif number_of_processes == "B":
+                                     number_of_processes = 2
+                                     break
+                              elif number_of_processes == "C":
+                                     number_of_processes = 3
+                                     break
                               else:
-                                    print("Zadávejte číslo v rozmezí 1-50.")
+                                    print("Zadávejte číslice A,B nebo C .")
                         except:
                               print("Špatný input")
                   
@@ -68,12 +75,16 @@ if __name__ == '__main__':
                         
                         for y in range(number_of_processes):
                                     process = multiprocessing.Process(target=generate_schedule, args=(generated_schedules,running,lock))
-
+                                    
                                     processes.append(process)
+
                                     process.start()
+                                
                                     time.sleep(0.05)
                                     if wd_process.is_alive():
-                                          
+                                         
+
+
                                           process_rating = multiprocessing.Process(target=rat.rate_Positions, args=(generated_schedules,running,score_of_rated_schedules,lock,number_of_rated_schedules,best_scored_schedule,better_than_act_schedule))
                                           processes.append(process_rating)
                                           

@@ -313,13 +313,13 @@ class Rater:
                             elif count_hour_5_to_8 == 0:
                                     specific_schedule.set_rating(specific_schedule.get_rating() - 500)
 
-                    print(f"Hodnocení rozvrhu : {specific_schedule.get_rating()}")
+                    
                     print(f"Zatím nejlepší hodnocení rozvrhu : {best_scored_schedule.value}")
                     if specific_schedule.get_rating() >= best_scored_schedule.value:   
                         specific_schedule.set_rating(specific_schedule.get_rating())
                         rated_array.append(specific_schedule)
                         best_scored_schedule.value = specific_schedule.get_rating() 
-                    if  specific_schedule.get_rating() > -20403:
+                    if  specific_schedule.get_rating() > -100403:
                         better_than_act_schedule.value += 1
                     del specific_schedule
                     number_of_rated_schedules.value += 1
