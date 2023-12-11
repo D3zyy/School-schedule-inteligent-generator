@@ -16,7 +16,7 @@ if __name__ == '__main__':
       multiprocessing.freeze_support()
 
       try:
-            while True:
+            
                   while True:
                         try:
                               
@@ -109,7 +109,7 @@ if __name__ == '__main__':
                   print(f"Počet ohodnocenených rozvrhů  : {number_of_rated_schedules.value}")
                   print(f"Nejlepší score :{best_scored_schedule.value }")
                   print(f"Rozvrhů lepších než původně zadaný rozvrh : {better_than_act_schedule.value }")
-                  
+                  end = input("Pro ukončení stistkněte jakoukoliv klávesu")
                   
             
                   

@@ -319,7 +319,7 @@ class Rater:
                         specific_schedule.set_rating(specific_schedule.get_rating())
                         rated_array.append(specific_schedule)
                         best_scored_schedule.value = specific_schedule.get_rating() 
-                    if  specific_schedule.get_rating() > -2403:
+                    if  specific_schedule.get_rating() > -20403:
                         better_than_act_schedule.value += 1
                     del specific_schedule
                     number_of_rated_schedules.value += 1

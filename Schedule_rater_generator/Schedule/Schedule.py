@@ -15,7 +15,7 @@ class Schedule(multiprocessing.Process):
             'thursday': [],
             'friday': []
         }
-        self.rating = 20000
+        self.rating = 30000
     def set_rating(self,value):
         self.rating = value
     def get_rating(self):
