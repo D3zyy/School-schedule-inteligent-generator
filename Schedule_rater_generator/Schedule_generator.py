@@ -33,13 +33,13 @@ if __name__ == '__main__':
                               
                               number_of_processes = str(input("Jak moc chcete zatížit procesor [A = slabě] [B = středně] [C = silně] "))
                               if number_of_processes == "A":
-                                    number_of_processes = 1
+                                    number_of_processes = 2
                                     break
                               elif number_of_processes == "B":
-                                     number_of_processes = 2
+                                     number_of_processes = 5
                                      break
                               elif number_of_processes == "C":
-                                     number_of_processes = 3
+                                     number_of_processes = 23
                                      break
                               else:
                                     print("Zadávejte číslice A,B nebo C .")
